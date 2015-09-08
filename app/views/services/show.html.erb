@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Service code:</strong>
+  <%= @service.service_code %>
+</p>
+
+<p>
+  <strong>Service name:</strong>
+  <%= @service.service_name %>
+</p>
+
+<p>
+  <strong>Service type:</strong>
+  <%= @service.service_type %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @service.description %>
+</p>
+
+<p>
+  <strong>Metadata:</strong>
+  <%= @service.metadata %>
+</p>
+
+<p>
+  <strong>Keywords:</strong>
+  <%= @service.keywords %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @service.group %>
+</p>
+
+<p>
+  <strong>Jurisdiction:</strong>
+  <%= @service.jurisdiction_id %>
+</p>
+
+<%= link_to 'Edit', edit_service_path(@service) %> |
+<%= link_to 'Back', services_path %>

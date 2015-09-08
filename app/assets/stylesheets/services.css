@@ -1,0 +1,30 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+
+th {
+  white-space: nowrap;
+  text-align: left;
+  vertical-align: top;
+}
+td {
+  text-align: left;
+  vertical-align: top;
+}
+dl {
+  margin: 0;
+  padding: 0;
+}
+dt {
+  font-weight: bold;
+}
+dt:after {
+  content: ": ";
+}
+input, textarea {
+  width: 20em;
+}
+.alert {
+  color: red;
+}

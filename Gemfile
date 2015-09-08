@@ -11,6 +11,9 @@ gem 'pg'
 gem 'puma'
 gem 'uuid'
 
+gem 'sass-rails'
+gem 'jquery-rails'
+
 gem 'pry-rails'
 gem 'awesome_print'
 

@@ -1,0 +1,76 @@
+<%= form_for(@service) do |f| %>
+  <% if @service.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@service.errors.count, "error") %> prohibited this service from being saved:</h2>
+
+      <ul>
+      <% @service.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+<% end %>
+
+  <table>
+  <tr>
+    <th><%= f.label :service_code %></th>
+    <td><%= f.text_field :service_code %></td>
+    <td>The unique identifier for the service request type</td>
+  </tr>
+  <tr>
+    <th><%= f.label :service_name %></th>
+    <td><%= f.text_field :service_name %></td>
+    <td>The human readable name of the service request type</td>
+  </tr>
+  <tr>
+    <th><%= f.label :description %></th>
+    <td><%= f.text_area :description %></td>
+    <td>A brief description of the service request type.	</td>
+  </tr>
+  <tr>
+    <th><%= f.label :metadata %></th>
+    <td><%= f.check_box :metadata %></td>
+    <td>Determines whether there are additional form fields for this service type.
+      <dl>
+        <dt>true</dt>
+        <dd>This service request type requires additional metadata so the client will need to make a call to the Service Definition method.</dd>
+        <dt>false</dt>
+        <dd>No additional information is required and a call to the Service Definition method is not needed.</dd>
+      </dl>
+    </td>
+  </tr>
+  <tr>
+    <th><%= f.label :service_type %></th>
+    <td><%= f.text_field :service_type %></td>
+    <td>
+      <dl>
+        <dt>realtime</dt>
+        <dd>The service request ID will be returned immediately after the service request is submitted.</dd>
+        <dt>batch</dt>
+        <dd>A token will be returned immediately after the service request is submitted. This token can then be later used to return the service request ID.</dd>
+        <dt>blackbox</dt>
+        <dd>No service request ID will be returned after the service request is submitted.</dd>
+      </dl>
+    </td>
+  </tr>
+  <tr>
+    <th><%= f.label :keywords %></th>
+    <td><%= f.text_area :keywords %></td>
+    <td>A comma separated list of tags or keywords to help users identify the request type. This can provide synonyms of the service_name and group.</td>
+  </tr>
+  <tr>
+    <th><%= f.label :group %></th>
+    <td><%= f.text_field :group %></td>
+    <td>A category to group this service type within. This provides a way to group several service request types under one category such as “sanitation”</td>
+  </tr>
+  <tr>
+    <th><%= f.label :jurisdiction_id %></th>
+    <td><%= f.number_field :jurisdiction_id %></td>
+    <td></td>
+    <td><span class='alert'>This is only required if the endpoint serves multiple jurisdictions</span></td>
+  </tr>
+</table>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
