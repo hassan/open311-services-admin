@@ -3,6 +3,9 @@
   They will automatically be included in application.css.
 */
 
+th, td {
+  padding: 0 1em 1em 0;
+}
 th {
   white-space: nowrap;
   text-align: left;
@@ -24,6 +27,9 @@ dt:after {
 }
 input, textarea {
   width: 20em;
+}
+input[type=checkbox] {
+  width: auto;
 }
 .alert {
   color: red;

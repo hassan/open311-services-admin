@@ -65,7 +65,8 @@
   </tr>
   <tr>
     <th><%= f.label :jurisdiction_id %></th>
-    <td><%= f.number_field :jurisdiction_id %></td>
+    <td><%= f.select :jurisdiction_id, Jurisdiction.all.collect { |p| [ p.name, p.id ] }, prompt: true %>
+    </td>
     <td></td>
     <td><span class='alert'>This is only required if the endpoint serves multiple jurisdictions</span></td>
   </tr>
