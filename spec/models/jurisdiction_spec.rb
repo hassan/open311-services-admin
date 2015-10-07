@@ -1,5 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Jurisdiction, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  it 'has a name' do
+    jurisdiction = Jurisdiction.create
+    expect(jurisdiction).to_not be_valid
+
+  end
 end

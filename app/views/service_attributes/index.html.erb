@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Service Attributes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Service</th>
+      <th>Variable</th>
+      <th>Code</th>
+      <th>Datatype</th>
+      <th>Required</th>
+      <th>Datatype description</th>
+      <th>Order</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @service_attributes.each do |service_attribute| %>
+      <tr>
+        <td><%= service_attribute.service_definition_id %></td>
+        <td><%= service_attribute.variable %></td>
+        <td><%= service_attribute.code %></td>
+        <td><%= service_attribute.datatype %></td>
+        <td><%= service_attribute.required %></td>
+        <td><%= service_attribute.datatype_description %></td>
+        <td><%= service_attribute.order %></td>
+        <td><%= service_attribute.description %></td>
+        <td><%= link_to 'Show', service_attribute %></td>
+        <td><%= link_to 'Edit', edit_service_attribute_path(service_attribute) %></td>
+        <td><%= link_to 'Destroy', service_attribute, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Service attribute', new_service_attribute_path %>

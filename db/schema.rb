@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150908185347) do
+ActiveRecord::Schema.define(version: 20150908194832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,34 @@ ActiveRecord::Schema.define(version: 20150908185347) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "service_attribute_values", force: :cascade do |t|
+    t.integer  "service_attribute_id"
+    t.string   "key"
+    t.string   "name"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "service_attributes", force: :cascade do |t|
+    t.integer  "service_definition_id"
+    t.boolean  "variable"
+    t.string   "code"
+    t.string   "datatype"
+    t.boolean  "required"
+    t.text     "datatype_description"
+    t.integer  "order"
+    t.text     "description"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  create_table "service_definitions", force: :cascade do |t|
+    t.integer  "service_id"
+    t.string   "service_code"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "services", force: :cascade do |t|

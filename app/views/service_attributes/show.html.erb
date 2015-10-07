@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Service:</strong>
+  <%= @service_attribute.service_id %>
+</p>
+
+<p>
+  <strong>Variable:</strong>
+  <%= @service_attribute.variable %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @service_attribute.code %>
+</p>
+
+<p>
+  <strong>Datatype:</strong>
+  <%= @service_attribute.datatype %>
+</p>
+
+<p>
+  <strong>Required:</strong>
+  <%= @service_attribute.required %>
+</p>
+
+<p>
+  <strong>Datatype description:</strong>
+  <%= @service_attribute.datatype_description %>
+</p>
+
+<p>
+  <strong>Order:</strong>
+  <%= @service_attribute.order %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @service_attribute.description %>
+</p>
+
+<%= link_to 'Edit', edit_service_attribute_path(@service_attribute) %> |
+<%= link_to 'Back', service_attributes_path %>

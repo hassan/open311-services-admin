@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Service attribute:</strong>
+  <%= @service_attribute_value.service_attribute_id %>
+</p>
+
+<p>
+  <strong>Key:</strong>
+  <%= @service_attribute_value.key %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @service_attribute_value.name %>
+</p>
+
+<%= link_to 'Edit', edit_service_attribute_value_path(@service_attribute_value) %> |
+<%= link_to 'Back', service_attribute_values_path %>

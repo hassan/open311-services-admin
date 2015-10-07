@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :service_attribute_values
+  resources :service_attributes
+  resources :service_definitions
   resources :jurisdictions
   resources :services
   # The priority is based upon order of creation: first created -> highest priority.

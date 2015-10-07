@@ -8,6 +8,11 @@ class ServicesController < ApplicationController
 
   # GET /services/1
   def show
+    begin
+      Jurisdiction.find(@service.jurisdiction_id)
+    rescue ActiveRecord::RecordNotFound
+      render status: :not_found
+    end
   end
 
   # GET /services/new

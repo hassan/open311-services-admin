@@ -7,9 +7,9 @@
     <tr>
       <th>Service code</th>
       <th>Service name</th>
-      <th>Service type</th>
       <th>Description</th>
       <th>Metadata</th>
+      <th>Service type</th>
       <th>Keywords</th>
       <th>Group</th>
       <th>Jurisdiction</th>
@@ -20,15 +20,15 @@
   <tbody>
     <% @services.each do |service| %>
       <tr>
-        <td><%= service.service_code %></td>
+        <td><%= link_to service.service_code, service %></td>
         <td><%= service.service_name %></td>
-        <td><%= service.service_type %></td>
         <td><%= service.description %></td>
         <td><%= service.metadata %></td>
+        <td><%= service.service_type %></td>
         <td><%= service.keywords %></td>
         <td><%= service.group %></td>
-        <td><%= service.jurisdiction_id %></td>
-        <td><%= link_to 'Show', service %></td>
+        <td><%= service.jurisdiction.name %></td>
+
         <td><%= link_to 'Edit', edit_service_path(service) %></td>
         <td><%= link_to 'Destroy', service, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

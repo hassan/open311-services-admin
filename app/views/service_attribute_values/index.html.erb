@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Service Attribute Values</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Service attribute</th>
+      <th>Key</th>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @service_attribute_values.each do |service_attribute_value| %>
+      <tr>
+        <td><%= service_attribute_value.service_attribute_id %></td>
+        <td><%= service_attribute_value.key %></td>
+        <td><%= service_attribute_value.name %></td>
+        <td><%= link_to 'Show', service_attribute_value %></td>
+        <td><%= link_to 'Edit', edit_service_attribute_value_path(service_attribute_value) %></td>
+        <td><%= link_to 'Destroy', service_attribute_value, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Service attribute value', new_service_attribute_value_path %>
