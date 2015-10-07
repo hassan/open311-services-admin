@@ -3,15 +3,24 @@ require 'rails_helper'
 RSpec.describe ServicesController, type: :controller do
 
   before(:all) do
+    @attributes = Fabricate(:service).attributes
+      .to_hash
+      .merge(service_type: [ :realtime, :batch, :blackbox ].sample)
+      .reject { |k, _v| k == 'id' }
+    @badtributes = @attributes
+      .merge(jurisdiction_id: nil)
+  end
+
+  before(:each) do
     Service.all.map(&:destroy)
   end
 
   # This should return the minimal set of attributes required to create a valid
   # Service. As you add validations to Service, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { Fabricate(:service).attributes.to_hash }
+  let(:valid_attributes) { @attributes }
 
-  let(:invalid_attributes) { skip('Add a hash of attributes invalid for your model') }
+  let(:invalid_attributes) { @badtributes }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -20,7 +29,7 @@ RSpec.describe ServicesController, type: :controller do
 
   describe 'GET #index' do
     it 'assigns all services as @services' do
-      service = Service.create! valid_attributes
+      service = Fabricate(:service)
       get :index, {}, valid_session
       expect(assigns(:services)).to eq([service])
     end
@@ -28,7 +37,7 @@ RSpec.describe ServicesController, type: :controller do
 
   describe 'GET #show' do
     it 'assigns the requested service as @service' do
-      service = Service.create! valid_attributes
+      service = Fabricate(:service)
       get :show, { id: service.to_param }, valid_session
       expect(assigns(:service)).to eq(service)
     end
@@ -43,7 +52,7 @@ RSpec.describe ServicesController, type: :controller do
 
   describe 'GET #edit' do
     it 'assigns the requested service as @service' do
-      service = Service.create! valid_attributes
+      service = Fabricate(:service)
       get :edit, { id: service.to_param }, valid_session
       expect(assigns(:service)).to eq(service)
     end
@@ -52,9 +61,8 @@ RSpec.describe ServicesController, type: :controller do
   describe 'POST #create' do
     context 'with valid params' do
       it 'creates a new Service' do
-        expect {
-          post :create, { service: valid_attributes }, valid_session
-        }.to change(Service, :count).by(1)
+        expect { post :create, { service: valid_attributes }, valid_session }
+          .to change(Service, :count).by(1)
       end
 
       it 'assigns a newly created service as @service' do
@@ -84,25 +92,23 @@ RSpec.describe ServicesController, type: :controller do
 
   describe 'PUT #update' do
     context 'with valid params' do
-      let(:new_attributes) {
-        skip('Add a hash of attributes valid for your model')
-      }
+      let(:new_attributes) { { service_name: 'something else' } }
 
       it 'updates the requested service' do
-        service = Service.create! valid_attributes
+        service = Fabricate(:service)
         put :update, { id: service.to_param, service: new_attributes }, valid_session
         service.reload
-        skip('Add assertions for updated state')
+        expect(service.service_name).to eq('something else')
       end
 
       it 'assigns the requested service as @service' do
-        service = Service.create! valid_attributes
+        service = Fabricate(:service)
         put :update, { id: service.to_param, service: valid_attributes }, valid_session
         expect(assigns(:service)).to eq(service)
       end
 
       it 'redirects to the service' do
-        service = Service.create! valid_attributes
+        service = Fabricate(:service)
         put :update, { id: service.to_param, service: valid_attributes }, valid_session
         expect(response).to redirect_to(service)
       end
@@ -110,13 +116,13 @@ RSpec.describe ServicesController, type: :controller do
 
     context 'with invalid params' do
       it 'assigns the service as @service' do
-        service = Service.create! valid_attributes
+        service = Fabricate(:service)
         put :update, { id: service.to_param, service: invalid_attributes }, valid_session
         expect(assigns(:service)).to eq(service)
       end
 
       it 're-renders the "edit" template' do
-        service = Service.create! valid_attributes
+        service = Fabricate(:service)
         put :update, { id: service.to_param, service: invalid_attributes }, valid_session
         expect(response).to render_template('edit')
       end
@@ -125,14 +131,13 @@ RSpec.describe ServicesController, type: :controller do
 
   describe 'DELETE #destroy' do
     it 'destroys the requested service' do
-      service = Service.create! valid_attributes
-      expect {
-        delete :destroy, { id: service.to_param }, valid_session
-      }.to change(Service, :count).by(-1)
+      service = Fabricate(:service)
+      expect { delete :destroy, { id: service.to_param }, valid_session }
+        .to change(Service, :count).by(-1)
     end
 
     it 'redirects to the services list' do
-      service = Service.create! valid_attributes
+      service = Fabricate(:service)
       delete :destroy, { id: service.to_param }, valid_session
       expect(response).to redirect_to(services_url)
     end

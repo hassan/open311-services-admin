@@ -5,7 +5,7 @@ Fabricator(:service) do
   service_name    { Faker::Lorem.words(3).join(' ' ) }
   description     { Faker::Lorem.sentences(3).join(' ' ) }
   metadata        false
-  service_type    1
+  service_type    [ 0, 1, 2 ].sample
   keywords        { Faker::Lorem.words(5).join(', ' ) }
   group           { Faker::Lorem.words(1) }
 end
